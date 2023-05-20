@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import router from '@/router';
+import axios from "axios";
 
 export const useQuizStore = defineStore('quiz', {
     state: () => ({
@@ -19,55 +20,40 @@ export const useQuizStore = defineStore('quiz', {
     },
     actions: {
         initializeQuestions() {
-            const questions = [
-                {
-                    quote: 'Quote 1',
-                    authors: [
-                        { id: 1, name: 'Author 1' },
-                        { id: 2, name: 'Author 2' },
-                        { id: 3, name: 'Author 3' },
-                    ],
-                    correctAuthorId: 1,
-                },
-                {
-                    quote: 'Quote 2',
-                    authors: [
-                        { id: 1, name: 'Author 1' },
-                        { id: 2, name: 'Author 2' },
-                        { id: 3, name: 'Author 3' },
-                    ],
-                    correctAuthorId: 2,
-                },
-                {
-                    quote: 'Quote 3',
-                    authors: [
-                        { id: 1, name: 'Author 1' },
-                        { id: 2, name: 'Author 2' },
-                        { id: 3, name: 'Author 3' },
-                    ],
-                    correctAuthorId: 3,
-                },
-                // Add more questions here...
-            ];
-            this.questions = questions;
+            axios.get('api/quotes')
+                .then((result) => {
+                    this.questions = result.data.map((quote) => {
+                        return {
+                            ...quote,
+                            authors: JSON.parse(quote.authors)
+                        }
+                    });
+                })
         },
-        async checkAnswer(author) {
-            if (author.id === this.currentQuestion.correctAuthorId) {
-                this.correctAnswers++;
-                alert('Correct! The right answer is ' + author.name);
-            } else {
-                this.wrongAnswers++;
-                const correctAuthor = this.currentQuestion.authors.find(
-                    (a) => a.id === this.currentQuestion.correctAuthorId
-                );
-                alert('Sorry, you are wrong! The right answer is ' + correctAuthor.name);
-            }
+        checkAnswer(author) {
+            axios.post('api/quote', {
+                quoteId: this.currentQuestion.id,
+            }).then((response) => {
+                const correctAuthorId = response.data.correct;
 
-            if (this.sessionCompleted) {
-                await router.push('/results');
-            } else {
-                this.currentQuestionIndex++;
-            }
+                if (correctAuthorId === author.id) {
+                    this.correctAnswers++;
+                    alert('Correct! The right answer is ' + author.name);
+                } else {
+                    this.wrongAnswers++;
+                    const correctAuthor = this.currentQuestion.authors.find(
+                        (a) => a.id === correctAuthorId
+                    );
+                    console.log(correctAuthor);
+                    alert('Sorry, you are wrong! The right answer is ' + correctAuthor.name);
+                }
+
+                if (this.sessionCompleted) {
+                    router.push('/results');
+                } else {
+                    this.currentQuestionIndex++;
+                }
+            })
         },
         restartQuiz() {
             this.currentQuestionIndex = 0;

@@ -11,7 +11,7 @@ module.exports = defineConfig({
         }
       },
       'api': {
-        target: 'http://requests.test/',
+        target: 'http://quiz-backend.test/',
         changeOrigin: true,
         pathRewrite: {
           '^/V2': ''

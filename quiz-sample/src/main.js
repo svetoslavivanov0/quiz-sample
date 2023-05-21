@@ -14,3 +14,6 @@ app.use(router);
 app.use(pinia);
 
 app.mount('#app');
+
+import '../src/assets/css/styles.scss';
+

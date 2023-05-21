@@ -1,0 +1,80 @@
+$small: 430px;
+
+.page {
+  max-width: 700px;
+  padding: 50px;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    font-size: 50px;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: $small) {
+      font-size: 40px;
+    }
+  }
+
+  p {
+    font-size: 30px;
+
+    @media screen and (max-width: $small) {
+      font-size: 28px;
+    }
+  }
+
+  .btn {
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-color: transparent;
+    border-radius: 10px;
+
+    &:hover {
+      opacity: .7;
+    }
+
+    @media screen and (max-width: $small) {
+      font-size: 15px;
+    }
+  }
+
+  @media screen and (max-width: $small) {
+    padding: 0;
+  }
+}
+
+.quote {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: $small) {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+
+  li {
+    padding: 5px;
+
+    @media screen and (max-width: $small) {
+      flex: 1 1 50%;
+      max-width: 50%;
+    }
+  }
+}
+
+.page-statistic {
+  .correct {
+    color: #28a745;
+  }
+
+  .wrong {
+    color: #dc3545;
+  }
+}

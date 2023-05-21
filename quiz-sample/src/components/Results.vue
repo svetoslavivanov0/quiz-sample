@@ -1,9 +1,12 @@
 <template>
-  <div>
+  <div class="page page-statistic">
     <h2>Statistics</h2>
-    <p>Correct answers: {{ $store.correctAnswers }}</p>
-    <p>Wrong answers: {{ $store.wrongAnswers }}</p>
-    <button @click="$store.restartQuiz">Restart</button>
+
+    <p class="correct">Correct answers: {{ $store.correctAnswers }}</p>
+
+    <p class="wrong">Wrong answers: {{ $store.wrongAnswers }}</p>
+
+    <button class="btn" @click="$store.restartQuiz">Restart</button>
   </div>
 </template>
 

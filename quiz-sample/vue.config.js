@@ -11,7 +11,7 @@ module.exports = defineConfig({
         }
       },
       'api': {
-        target: 'http://quiz-backend.test/',
+        target: process.env.VUE_APP_BACKEND,
         changeOrigin: true,
         pathRewrite: {
           '^/V2': ''

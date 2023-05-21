@@ -8,7 +8,6 @@ export const useQuizStore = defineStore('quiz', {
         currentQuestionIndex: 0,
         correctAnswers: 0,
         wrongAnswers: 0,
-        router: null,
     }),
     getters: {
         currentQuestion(state) {
@@ -44,7 +43,6 @@ export const useQuizStore = defineStore('quiz', {
                     const correctAuthor = this.currentQuestion.authors.find(
                         (a) => a.id === correctAuthorId
                     );
-                    console.log(correctAuthor);
                     alert('Sorry, you are wrong! The right answer is ' + correctAuthor.name);
                 }
 
@@ -53,6 +51,8 @@ export const useQuizStore = defineStore('quiz', {
                 } else {
                     this.currentQuestionIndex++;
                 }
+            }).catch(() => {
+                alert('Please try again later');
             })
         },
         restartQuiz() {

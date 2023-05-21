@@ -1,12 +1,12 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once '../app/vendor/autoload.php';
 
 use Controllers\QuoteController;
 use Repositories\QuoteRepository;
 
-require_once 'Database/config/db_config.php';
-require_once 'Controllers/QuoteController.php';
+require_once '../app/Database/config/db_config.php';
+require_once '../app/Controllers/QuoteController.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
@@ -33,10 +33,16 @@ try {
         if ($method === 'POST') {
             $input = json_decode(file_get_contents('php://input'), true);
 
+            if(empty($input)) {
+                http_response_code(422);
+                exit;
+            }
+
             $quoteId = $input['quoteId'];
 
             if (!$quoteId) {
                 http_response_code(422);
+                exit;
             }
             $response = $quotesController->$action($quoteId);
         } else {
@@ -48,6 +54,9 @@ try {
         http_response_code(404);
         echo 'not found test';
     }
-} catch (PDOException $e) {
-    echo $e->getMessage();
+} catch (\Exception $e) {
+    http_response_code($e->getCode());
+    echo json_encode([
+        'error' => 'An error occurred'
+    ]);
 }

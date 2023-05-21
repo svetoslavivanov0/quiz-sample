@@ -1,6 +1,7 @@
 {
   "require": {
-    "php": "^8.0"
+    "php": "^8.0",
+    "vlucas/phpdotenv": "dev-master"
   },
   "autoload": {
     "psr-4": {

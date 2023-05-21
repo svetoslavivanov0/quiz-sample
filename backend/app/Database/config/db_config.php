@@ -1,6 +1,12 @@
 <?php
+define('BASE_PATH',realpath(__DIR__.'/../../'));
 
-$host = '127.0.0.1'; // Hostname
-$database = 'quiz'; // Database name
-$username = 'root'; // Database username
-$password = ''; // Database password
+require_once __DIR__.'/../../vendor/autoload.php';
+
+$dotEnv = Dotenv\Dotenv::createUnsafeImmutable(BASE_PATH);
+$dotEnv->load();
+
+$host = getenv('DB_HOST'); // Hostname
+$database = getenv('DB_TABLE'); // Database name
+$username = getenv('DB_NAME'); // Database username
+$password = getenv('DB_PASSWORD'); // Database password

@@ -4,7 +4,7 @@ namespace Repositories;
 
 use PDO;
 
-class QuoteRepository implements QuoteRepositoryInterface
+class QuoteRepository
 {
     private $db;
 
@@ -14,7 +14,7 @@ class QuoteRepository implements QuoteRepositoryInterface
 
     public function getAll()
     {
-        $stmt = $this->db->prepare("SELECT * FROM QUOTES");
+        $stmt = $this->db->prepare("SELECT * FROM QUOTES ORDER BY RAND() LIMIT 10");
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

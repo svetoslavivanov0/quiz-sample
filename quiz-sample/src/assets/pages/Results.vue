@@ -11,8 +11,15 @@
 </template>
 
 <script>
+/**
+ * External dependencies
+ */
 
+/**
+ * Internal dependencies
+ */
 import { useQuizStore } from "@/store";
+
 
 export default {
   name: 'ResultsComponent',

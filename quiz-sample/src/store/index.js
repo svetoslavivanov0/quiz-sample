@@ -1,6 +1,13 @@
+/**
+ * External dependencies
+ */
 import { defineStore } from 'pinia';
+import axios from 'axios';
+
+/**
+ * Internal dependencies
+ */
 import router from '@/router';
-import axios from "axios";
 
 export const useQuizStore = defineStore('quiz', {
     state: () => ({

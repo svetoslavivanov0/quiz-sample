@@ -1,5 +1,12 @@
+/**
+ * External dependencies
+ */
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+
+/**
+ * Internal dependencies
+ */
 import App from './App.vue';
 import router from '@/router';
 

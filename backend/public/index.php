@@ -1,6 +1,5 @@
 <?php
 
-require_once '../app/vendor/autoload.php';
 require_once '../app/Database/config/db_config.php';
 require_once '../app/Controllers/QuoteController.php';
 

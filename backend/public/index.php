@@ -1,12 +1,11 @@
 <?php
 
 require_once '../app/vendor/autoload.php';
+require_once '../app/Database/config/db_config.php';
+require_once '../app/Controllers/QuoteController.php';
 
 use Controllers\QuoteController;
 use Repositories\QuoteRepository;
-
-require_once '../app/Database/config/db_config.php';
-require_once '../app/Controllers/QuoteController.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
@@ -20,7 +19,7 @@ try {
             'GET' => 'getAllQuotes'
         ],
         '/api/quote' => [
-            'POST' => 'getQuote'
+            'POST' => 'getQuoteAuthor'
         ]
     ];
 
@@ -33,7 +32,7 @@ try {
         if ($method === 'POST') {
             $input = json_decode(file_get_contents('php://input'), true);
 
-            if(empty($input)) {
+            if(!isset($input)) {
                 http_response_code(422);
                 exit;
             }
@@ -52,7 +51,7 @@ try {
         echo $response;
     } else {
         http_response_code(404);
-        echo 'not found test';
+        echo 'not found';
     }
 } catch (\Exception $e) {
     http_response_code($e->getCode());

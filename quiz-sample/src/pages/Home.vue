@@ -3,10 +3,10 @@
     <h2>Quote Quiz</h2>
 
     <question
-        v-if="$store.currentQuestion"
-        :title="$store.currentQuestion.quote"
-        :authors="$store.currentQuestion.authors"
-        @select="$store.checkAnswer($event)"
+        v-if="store.currentQuestion"
+        :title="store.currentQuestion.quote"
+        :authors="store.currentQuestion.authors"
+        @select="store.checkAnswer($event)"
     />
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
     store.initializeQuestions();
 
     return {
-      $store: store,
+      store,
     };
   }
 };

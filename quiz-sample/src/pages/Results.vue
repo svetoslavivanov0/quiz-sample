@@ -2,11 +2,11 @@
   <div class="page page-statistic">
     <h2>Statistics</h2>
 
-    <p class="correct">Correct answers: {{ $store.correctAnswers }}</p>
+    <p class="correct">Correct answers: {{ store.correctAnswers }}</p>
 
-    <p class="wrong">Wrong answers: {{ $store.wrongAnswers }}</p>
+    <p class="wrong">Wrong answers: {{ store.wrongAnswers }}</p>
 
-    <button class="btn" @click="$store.restartQuiz">Restart</button>
+    <button class="btn" @click="store.restartQuiz">Restart</button>
   </div>
 </template>
 
@@ -27,12 +27,8 @@ export default {
     const store = useQuizStore();
 
     return {
-      $store: store
+      store
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

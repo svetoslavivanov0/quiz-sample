@@ -6,8 +6,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 /**
  * Internal dependencies
  */
-import Home from '@/assets/pages/Home.vue';
-import Results from '@/assets/pages/Results.vue';
+import Home from '@/pages/Home.vue';
+import Results from '@/pages/Results.vue';
 
 const router = createRouter({
     history: createWebHistory(),

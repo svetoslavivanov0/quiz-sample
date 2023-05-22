@@ -6,7 +6,8 @@
   "autoload": {
     "psr-4": {
       "Repositories\\": "Repositories/",
-      "Controllers\\": "Controllers/"
+      "Controllers\\": "Controllers/",
+      "Services\\": "Services/"
     }
   }
 }
